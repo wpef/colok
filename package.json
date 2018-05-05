@@ -2,6 +2,7 @@
   "name": "myapp",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
@@ -11,6 +12,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-with-api": "concurrently \"react-scripts start\" \"PORT=8080 nodemon ./my_api/server.js\""
+
+  },
+  "devDependencies": {
+    "react-scripts": "1.1.4",
+    "concurrently": "^3.5.1",
+    "nodemon": "^1.17.3"
   }
 }

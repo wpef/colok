@@ -1,5 +1,5 @@
 import React from 'react';
-import {Input} from "react-toolbox/lib/input";
+import { Input } from "react-toolbox/lib/input";
 
 class Forms extends React.Component {
 	state = { name: "", phone: "", email: "", hint: "" };

@@ -13,7 +13,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "start-with-api": "concurrently \"react-scripts start\" \"PORT=8080 nodemon ./my_api/server.js\""
+    "api": "concurrently \"react-scripts start\" \"PORT=8080 nodemon ./my_api/server.js\""
 
   },
   "devDependencies": {

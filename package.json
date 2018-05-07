@@ -10,7 +10,8 @@
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-scripts": "1.1.4",
-    "react-toolbox": "^2.0.0-beta.12"
+    "react-toolbox": "^2.0.0-beta.12",
+    "react-toolbox-themr": "^1.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -18,7 +19,8 @@
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint .",
     "eject": "react-scripts eject",
-    "api": "concurrently \"react-scripts start\" \"PORT=8080 nodemon ./my_api/server.js\""
+    "api": "concurrently \"react-scripts start\" \"PORT=8080 nodemon ./my_api/server.js\"",
+    "toolbox": "react-toolbox-themr"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",
@@ -29,5 +31,20 @@
     "eslint-plugin-react": "^7.7.0",
     "nodemon": "^1.17.3",
     "react-scripts": "1.1.4"
+  },
+  "reactToolbox": {
+    "include": [
+      "BUTTON",
+      "DATE_PICKER",
+      "INPUT"
+    ],
+    "customProperties": {
+      "animation-duration": "0.3s",
+      "color-accent": "var(--palette-pink-a200)",
+      "color-accent-dark": "var(--palette-pink-700)",
+      "color-primary-contrast": "var(--color-dark-contrast)",
+      "color-accent-contrast": "var(--color-dark-contrast)"
+    },
+    "output": "src/assets/react-toolbox"
   }
 }

@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
+import './assets/react-toolbox/theme.css';
+import theme from './assets/react-toolbox/theme.js';
+import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
+
 import logo from './logo.svg';
 import './App.css';
-import Form from './components/Forms'
+import Form from './components/Form'
 
 class App extends Component {
   render() {
     return (
+    <ThemeProvider theme={ theme }>
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -16,6 +21,7 @@ class App extends Component {
         </p>
         <Form />
       </div>
+    </ThemeProvider>
     );
   }
 }

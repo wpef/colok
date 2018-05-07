@@ -1,10 +1,19 @@
 import React from 'react';
-import { Input } from "react-toolbox/lib/input";
+import Input  from "react-toolbox/lib/input/Input";
 
-class Forms extends React.Component {
+class SignUpForm extends React.Component {
 	state = { name: "", phone: "", email: "", hint: "" };
 
-	handleChange = (name, value) => {
+	handleChange = (name, value, icon) => {
+		if (name == 'name' && value == 'i')
+		{
+			//error ='SISIS';
+		}
+
+		console.log(name);
+		console.log(value);
+		console.log(icon);
+
 		this.setState({ ...this.state, [name]: value });
 	};
 
@@ -15,11 +24,11 @@ class Forms extends React.Component {
 					type="text"
 					label="Name"
 					name="name"
+					icon=" "
 					value={this.state.name}
 					onChange={this.handleChange.bind(this, "name")}
 					maxLength={16}
 				/>
-				<Input type="text" label="Disabled field" disabled />
 				<Input
 					type="email"
 					label="Email address"
@@ -35,18 +44,10 @@ class Forms extends React.Component {
 					value={this.state.phone}
 					onChange={this.handleChange.bind(this, "phone")}
 				/>
-				<Input
-					type="text"
-					value={this.state.hint}
-					label="Required Field"
-					hint="With Hint"
-					required
-					onChange={this.handleChange.bind(this, "hint")}
-					icon={<span>J</span>}
-				/>
+
 			</section>
 		);
 	}
 }
 
-export default Forms;
+export default SignUpForm;

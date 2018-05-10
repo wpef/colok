@@ -13,9 +13,9 @@ class SignUpForm extends React.Component {
 		email: "",
 		password: "",
 		errors: {
-			name : '',
-			email : '',
-			password : '',
+			name: "",
+			email: "",
+			password: ""
 		}
 	};
 
@@ -45,11 +45,16 @@ class SignUpForm extends React.Component {
 	};
 
 	handleChange = (name, value) => {
-		if (name === "name" && value === "i")
-			this.setState({ errors : { name : "yo" }} );
-		else this.setState({ errors : { name : "" }} );
+		if (name === "name") {
+			let newValue = value.replace(/\s/g, "");
+			value = newValue;
+		}
 
-		this.setState({ [name]: value } );
+		if (name === "name" && value === "i")
+			this.setState({ errors: { name: "yo" } });
+		else this.setState({ errors: { name: "" } });
+
+		this.setState({ [name]: value });
 	};
 
 	render() {

@@ -1,15 +1,23 @@
-import request from 'request';
-import React from 'react';
-import Input  from "react-toolbox/lib/input/Input";
-import Button from 'react-toolbox/lib/button/Button';
-
+//import request from 'request';
+import React from "react";
+import Input from "react-toolbox/lib/input/Input";
+import Button from "react-toolbox/lib/button/Button";
 
 //class InputName extends React.component {
 //
 //}
 
 class SignUpForm extends React.Component {
-	state = { name: "", email: "", password : "", hint: "" };
+	state = {
+		name: "",
+		email: "",
+		password: "",
+		errors: {
+			name : '',
+			email : '',
+			password : '',
+		}
+	};
 
 	submit = () => {
 		// request({
@@ -20,34 +28,28 @@ class SignUpForm extends React.Component {
 		// 		email : this.state.email,
 		// 		password : this.state.password
 		// 	}
-		// }, 
+		// },
 		// (error, response, body) => {
 		// 	console.log('error', error);
 		// 	console.log('response', response);
 		// 	console.log('body', body);
 		// });
-		fetch('/api/coloks')
-            .then(res => {
-                console.log(res);
-                return res.json()
-             })
-            .then(users => { 
-                console.log(users); 
-                this.setState({ name : users.coloks[0].name });
-                console.log(this.state);
-             });
+		fetch("/api/coloks")
+			.then(res => {
+				console.log(res);
+				return res.json();
+			})
+			.then(users => {
+				this.setState({ name: users.coloks[0].name });
+			});
 	};
 
 	handleChange = (name, value) => {
-		if (name === 'name' && value === 'i')
-		{
-			this.props.hint='yo';
-		}
+		if (name === "name" && value === "i")
+			this.setState({ errors : { name : "yo" }} );
+		else this.setState({ errors : { name : "" }} );
 
-		console.log(name);
-		console.log(value);
-
-		this.setState({ ...this.state, [name]: value });
+		this.setState({ [name]: value } );
 	};
 
 	render() {
@@ -58,8 +60,9 @@ class SignUpForm extends React.Component {
 					label="Name"
 					name="name"
 					icon=" "
-					hint=''
-					autoComplete='username'
+					hint=""
+					error={this.state.errors.name}
+					autoComplete="username"
 					value={this.state.name}
 					onChange={this.handleChange.bind(this, "name")}
 					maxLength={16}
@@ -68,7 +71,8 @@ class SignUpForm extends React.Component {
 					type="email"
 					label="Email address"
 					icon="email"
-					autoComplete='username'
+					error={this.state.errors.email}
+					autoComplete="username"
 					value={this.state.email}
 					onChange={this.handleChange.bind(this, "email")}
 				/>
@@ -76,13 +80,19 @@ class SignUpForm extends React.Component {
 					type="password"
 					label="Password"
 					icon="lock"
-					autoComplete='current-password'
-					value={this.state.email}
-					onChange={this.handleChange.bind(this, "email")}
+					error={this.state.errors.password}
+					autoComplete="current-password"
+					value={this.state.password}
+					onChange={this.handleChange.bind(this, "password")}
 				/>
 
-				 <Button icon='send' label='Sign up' raised primary onMouseUp={this.submit} />
-
+				<Button
+					icon="send"
+					label="Sign up"
+					raised
+					primary
+					onMouseUp={this.submit}
+				/>
 			</form>
 		);
 	}

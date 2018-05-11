@@ -1,4 +1,4 @@
-//import request from 'request';
+import request from 'request';
 import React from "react";
 import Input from "react-toolbox/lib/input/Input";
 import Button from "react-toolbox/lib/button/Button";
@@ -20,21 +20,25 @@ class SignUpForm extends React.Component {
 	};
 
 	submit = () => {
-		// request({
-		// 	url: '/api/coloks',
-		// 	method: 'GET',
-		// 	json: {
-		// 		name : this.state.name,
-		// 		email : this.state.email,
-		// 		password : this.state.password
-		// 	}
-		// },
-		// (error, response, body) => {
-		// 	console.log('error', error);
-		// 	console.log('response', response);
-		// 	console.log('body', body);
-		// });
-		fetch("/api/coloks")
+		request.post({
+			url: "http://localhost:8080/api/coloks",
+			body: {
+				name : this.state.name,
+				email : this.state.email,
+				password : this.state.password
+			},
+			json : true
+		},
+		(error, response, body) => {
+			console.log('error', error);
+			console.log('response', response);
+			console.log('body', body);
+
+			if (body.error) {
+				this.setState({ errors: { name: body.error.message } });
+			}
+		});
+/*		fetch("/api/coloks")
 			.then(res => {
 				console.log(res);
 				return res.json();
@@ -42,7 +46,7 @@ class SignUpForm extends React.Component {
 			.then(users => {
 				this.setState({ name: users.coloks[0].name });
 			});
-	};
+*/	};
 
 	handleChange = (name, value) => {
 		if (name === "name") {
@@ -96,7 +100,7 @@ class SignUpForm extends React.Component {
 					label="Sign up"
 					raised
 					primary
-					onMouseUp={this.submit}
+					onMouseUp={this.submit.bind(this)}
 				/>
 			</form>
 		);

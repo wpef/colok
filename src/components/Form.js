@@ -63,7 +63,7 @@ class SignUpForm extends React.Component {
 
 	render() {
 		return (
-			<form>
+			<form className={this.props.className}>
 				<Input
 					type="text"
 					label="Name"

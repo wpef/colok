@@ -19,7 +19,9 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Form />
+        <div className="row center-xs">
+          <Form  className="col-xs-12 col-md-5"/>
+        </div>
       </div>
     </ThemeProvider>
     );

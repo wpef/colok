@@ -3,11 +3,22 @@ import './assets/react-toolbox/theme.css';
 import theme from './assets/react-toolbox/theme.js';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 
-import logo from './logo.svg';
 import './App.css';
-import Form from './components/Form'
+
+import logo from './logo.svg';
+//import Form from './components/Form';
+//import {Home} from './components/Home';
+import Payment from './components/Payment';
+
 
 class App extends Component {
+  
+  constructor(props){
+    super(props);
+
+    this.state = { user : '5af71129c1839503fe3909c1'}; //Add user ID here for debug
+  }
+
   render() {
     return (
     <ThemeProvider theme={ theme }>
@@ -20,7 +31,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <div className="row center-xs">
-          <Form  className="col-xs-12 col-md-5"/>
+          <Payment user={this.state.user} /> 
         </div>
       </div>
     </ThemeProvider>

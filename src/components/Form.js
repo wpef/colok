@@ -35,18 +35,20 @@ class SignUpForm extends React.Component {
 			console.log('body', body);
 
 			if (body.error) {
-				this.setState({ errors: { name: body.error.message } });
+
+				if ( body.error.error.errors ) {
+					let errors = body.error.error.errors;
+					this.setState({
+						errors: {
+							name: errors.name ? errors.name.message : '',
+							email : errors.email ? errors.email.message : '' ,
+							password : errors.password ? errors.password.message : '',
+					 } });
+				}
 			}
 		});
-/*		fetch("/api/coloks")
-			.then(res => {
-				console.log(res);
-				return res.json();
-			})
-			.then(users => {
-				this.setState({ name: users.coloks[0].name });
-			});
-*/	};
+
+	};
 
 	handleChange = (name, value) => {
 		if (name === "name") {

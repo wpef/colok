@@ -10,7 +10,6 @@ export class Checkbox extends React.Component {
 	}
 
 	handleChange() {
-		console.log(this.state.value);
 		this.setState({ value: this.state.value ? false : true });
 	}
 

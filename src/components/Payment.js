@@ -3,13 +3,29 @@ import { ColokList } from "./Colok.js";
 import Input from "react-toolbox/lib/input/Input";
 
 class Payment extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			value : 0,
+			sharers : [],
+			name : '',
+		};
+
+		this.handlePrice = this.handlePrice.bind(this);
+
+	}
+
+	handlePrice(d) {
+		this.setState({value : d});
+	}
+
 	render() {
 		return (
 			<div>
 
-				<PaymentField />
-				<h3> Avec qui avez-vous partagé ce paiement ? </h3>
-				<h4> Séléctionnez tous les bénéficiaires (dont vous) </h4>
+				<PaymentField onPriceEntered={this.handlePrice} />
+				<p> Avec qui avez-vous partagé ce paiement ? </p>
+				<p> Séléctionnez tous les bénéficiaires (dont vous) </p>
 
 				<ColokList checkboxes />
 			</div>
@@ -23,26 +39,26 @@ class PaymentField extends React.Component {
 
 		this.state = {
 			value: "",
-			error: ""
+			error:"",
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleChange() {
-		this.setState({ value: this.value });
+	handleChange(val) {
+		var price = val;
+		this.props.onPriceEntered(price);
 	}
 
 	render() {
 		return (
 			<Input
-				type="number"
+				type='number'
 				label="How much did you spend ?"
 				name="value"
 				icon=" "
 				hint=""
 				error={this.state.error}
-				value={this.state.value}
 				onChange={this.handleChange}
 				maxLength={16}
 			/>

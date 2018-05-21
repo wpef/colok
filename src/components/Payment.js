@@ -11,22 +11,23 @@ class Payment extends React.Component {
 			name : '',
 		};
 
-		this.handleChange.bind(this);
+		this.handlePrice = this.handlePrice.bind(this);
+
 	}
 
-	handleChange() {
-		this.setState
+	handlePrice(d) {
+		this.setState({value : d});
 	}
 
 	render() {
 		return (
 			<div>
 
-				<PaymentField value={this.state.value} onChange={this.handleChange('value')}/>
+				<PaymentField onPriceEntered={this.handlePrice} />
 				<p> Avec qui avez-vous partagé ce paiement ? </p>
 				<p> Séléctionnez tous les bénéficiaires (dont vous) </p>
 
-				<ColokList checkboxes onChange={this.handleChange('sharers')} />
+				<ColokList checkboxes />
 			</div>
 		);
 	}
@@ -41,29 +42,23 @@ class PaymentField extends React.Component {
 			error:"",
 		};
 
-		console.log(props);
-
-		this.handleChangeProps = this.props.onChange;
-
-		console.log(this.handleChangeProps);
 		this.handleChange = this.handleChange.bind(this);
 	}
 
-	handleChange() {
-		this.handleChangeProps(this.value);
-		this.setState({value : this.value});
+	handleChange(val) {
+		var price = val;
+		this.props.onPriceEntered(price);
 	}
 
 	render() {
 		return (
 			<Input
-				type="number"
+				type='number'
 				label="How much did you spend ?"
 				name="value"
 				icon=" "
 				hint=""
 				error={this.state.error}
-				value={this.state.value}
 				onChange={this.handleChange}
 				maxLength={16}
 			/>

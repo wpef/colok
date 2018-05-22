@@ -9,23 +9,42 @@ class Payment extends React.Component {
 		this.state = {
 			value: 0,
 			sharers: [],
-			name: ""
+			name: "",
+			share : 0,
+			rest : 0
 		};
 
 		this.handlePrice = this.handlePrice.bind(this);
 		this.handleSharers = this.handleSharers.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange() {
+		if (this.state.sharers.length > 0) {
+			let total = this.state.value;
+			let r = total % this.state.sharers.length;
+			let shared = (total - r) / this.state.sharers.length;
+
+			this.setState({
+				share : shared,
+				rest : r,
+			});
+		}
 	}
 
 	handlePrice(d) {
 		this.setState({ value: d });
+		this.handleChange();
 	}
 
 	handleSharers(d) {
 		let a = d;
 		this.setState({ sharers: a });
+		this.handleChange();
 	}
 
 	render() {
+
 		return (
 			<div className="col-md-6">
 				<p> Combien avez-vous dépenser ? </p>
@@ -34,7 +53,7 @@ class Payment extends React.Component {
 				<p> Avec qui avez-vous partagé ce paiement ? </p>
 				<p> Séléctionnez tous les bénéficiaires (dont vous) </p>
 
-				<Checkboxes />
+				<Checkboxes share={this.state.share} rest={this.state.rest} onCheck={this.handleSharers} />
 			</div>
 		);
 	}
@@ -108,18 +127,16 @@ class Checkboxes extends React.Component {
 			}
 		}
 
-		console.log(copie);
+		this.props.onCheck(copie);
 
 		this.setState({ sharers : copie });
 	}
 
 	render() {
 
-		//console.log(this.state);
-
 		if (this.state.coloks) {
 			let form = this.state.coloks.map(colok => {
-				return <Checkbox colok={colok} onCheck={this.handleCheck} />;
+				return <Checkbox key={colok.name} colok={colok} onCheck={this.handleCheck} />;
 			}, this);
 
 			return <form> {form} </form>;

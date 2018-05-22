@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox } from "./Checkboxes";
+import { Checkbox } from "./Checkbox";
 
 export class ColokList extends React.Component {
 	constructor(props) {

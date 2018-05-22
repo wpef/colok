@@ -107,19 +107,19 @@ class Checkboxes extends React.Component {
 			}
 		}
 
-		let shared = this.props.price;
-		shared = shared / copie.length;
+		let shares = this.props.price;
+		shares = shares / copie.length;
 
 		this.props.onCheck(copie);
 
-		this.setState({ sharers : copie, count : copie.length, shared : shared });
+		this.setState({ sharers : copie, count : copie.length, shared : shares });
 	}
 
 	render() {
 
 		if (this.state.coloks) {
 			let form = this.state.coloks.map(colok => {
-				return <Checkbox key={colok.name} colok={colok} onCheck={this.handleCheck} />;
+				return <Checkbox key={colok.name} price={ this.state.shared } colok={colok} onCheck={this.handleCheck} />;
 			}, this);
 
 			return <form> {form} </form>;

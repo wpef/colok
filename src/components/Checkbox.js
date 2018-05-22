@@ -4,7 +4,7 @@ export class Checkbox extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { value: false };
+		this.state = { value: false, shared : 0 };
 
 		this.handleChange = this.handleChange.bind(this);
 	}
@@ -16,9 +16,14 @@ export class Checkbox extends React.Component {
 			colok : this.props.colok,
 			value : value,
 		});
+
+		if (value)
+			{ this.setState({shared:this.props.price}) };
 	}
 
 	render() {
+
+		console.log(this.props.price);
 
 		if (this.props.colok) {
 			return (
@@ -26,6 +31,7 @@ export class Checkbox extends React.Component {
 				<label>
 					<input type="checkbox" onClick={this.handleChange} />
 					<span>{this.props.colok.name}</span>
+					<input type='number' value={this.props.price} />
 				</label>
 
 			);

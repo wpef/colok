@@ -10,37 +10,19 @@ class Payment extends React.Component {
 			value: 0,
 			sharers: [],
 			name: "",
-			share : 0,
-			rest : 0
 		};
 
 		this.handlePrice = this.handlePrice.bind(this);
 		this.handleSharers = this.handleSharers.bind(this);
-		this.handleChange = this.handleChange.bind(this);
-	}
-
-	handleChange() {
-		if (this.state.sharers.length > 0) {
-			let total = this.state.value;
-			let r = total % this.state.sharers.length;
-			let shared = (total - r) / this.state.sharers.length;
-
-			this.setState({
-				share : shared,
-				rest : r,
-			});
-		}
 	}
 
 	handlePrice(d) {
 		this.setState({ value: d });
-		this.handleChange();
 	}
 
 	handleSharers(d) {
 		let a = d;
 		this.setState({ sharers: a });
-		this.handleChange();
 	}
 
 	render() {
@@ -53,7 +35,7 @@ class Payment extends React.Component {
 				<p> Avec qui avez-vous partagé ce paiement ? </p>
 				<p> Séléctionnez tous les bénéficiaires (dont vous) </p>
 
-				<Checkboxes share={this.state.share} rest={this.state.rest} onCheck={this.handleSharers} />
+				<Checkboxes price={this.state.value} onCheck={this.handleSharers} />
 			</div>
 		);
 	}
@@ -96,7 +78,7 @@ class Checkboxes extends React.Component {
 
 		this.fetchColoks();
 
-		this.state = { sharers: [] };
+		this.state = { sharers: [], count : 0, shared : 0 };
 
 		this.handleCheck = this.handleCheck.bind(this);
 	}
@@ -116,8 +98,6 @@ class Checkboxes extends React.Component {
 
 		let colok = val.colok;
 
-		//console.log(colok);
-
 		if (val.value === true && copie.includes(colok.name) === false)
 			copie.push(colok.name);
 		else if (val.value === false && copie.includes(colok.name)) {
@@ -127,9 +107,12 @@ class Checkboxes extends React.Component {
 			}
 		}
 
+		let shared = this.props.price;
+		shared = shared / copie.length;
+
 		this.props.onCheck(copie);
 
-		this.setState({ sharers : copie });
+		this.setState({ sharers : copie, count : copie.length, shared : shared });
 	}
 
 	render() {

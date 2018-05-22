@@ -24,6 +24,14 @@ export class Checkbox extends React.Component {
 
 	render() {
 		console.log(this.props.price);
+		let input;
+		
+		if (this.state.value) {
+			input = <input type="number" value={this.props.price} />;
+		}
+		else {
+			input = <input type="number" value=''/>;
+		}
 
 		if (this.props.colok) {
 			return (
@@ -33,7 +41,7 @@ export class Checkbox extends React.Component {
 						<span>{this.props.colok.name}</span>
 					</div>
 					<div className="col-xs end-xs">
-						<input type="number" value={this.props.price} />
+						{input}
 					</div>
 				</label>
 			);

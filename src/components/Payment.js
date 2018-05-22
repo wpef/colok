@@ -29,7 +29,7 @@ class Payment extends React.Component {
 
 		return (
 			<div className="col-md-6">
-				<p> Combien avez-vous dépenser ? </p>
+				<p> Combien avez-vous dépensé ? </p>
 
 				<PaymentField onPriceEntered={this.handlePrice} />
 				<p> Avec qui avez-vous partagé ce paiement ? </p>

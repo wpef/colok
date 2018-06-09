@@ -27,13 +27,18 @@ class Payment extends React.Component {
 		this.setState({ sharers: a });
 	}
 
-	handleSubmit() {
-		console.log(this.state);
-		//Parse for API
-		// payment.name = req.body.name;
-		// payment.price = req.body.price;
-		// payment.owner = req.body.owner;
-		// payment.sharers = req.body.sharers.split(',');
+	handleSubmit() {	
+
+		//Parse for API	
+		let APIpayment = {};
+
+		APIpayment.name = prompt("Payment title", 'Untitled');
+		APIpayment.price = this.state.value;
+		APIpayment.owner = this.props.user;
+		APIpayment.sharers = this.props.sharers;
+
+		console.log(APIpayment);
+
 	}
 
 	render() {

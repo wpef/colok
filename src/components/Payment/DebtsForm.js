@@ -6,7 +6,7 @@ class DebtsForm extends React.Component {
 
 		this.fetchColoks();
 
-		this.state = { sharers: [], count: 0, shared: 0 };
+		this.state = { sharers: [], count: 0, shared: 0, reste: 0 };
 
 		this.handleCheck = this.handleCheck.bind(this);
 	}
@@ -35,15 +35,20 @@ class DebtsForm extends React.Component {
 			}
 		}
 
-		let shares = this.props.price;
-		shares = shares / copie.length;
+		let t = this.props.price;
+		let n = copie.length;
+		let rest = (t % n)
+		
+		let shares = (t - rest) / n;
 
 		this.props.onCheck(copie);
 
-		this.setState({ sharers: copie, count: copie.length, shared: shares });
+		this.setState({ sharers: copie, count: copie.length, shared: shares, reste : rest });
 	}
 
 	render() {
+		console.log(this.state.reste);
+
 		if (this.state.coloks) {
 			let form = this.state.coloks.map(colok => {
 				return (
@@ -57,6 +62,7 @@ class DebtsForm extends React.Component {
 			}, this);
 
 			return <div> {form} </div>;
+			
 		} else return "loading...";
 	}
 }

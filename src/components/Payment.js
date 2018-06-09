@@ -37,8 +37,6 @@ class Payment extends React.Component {
 		APIpayment.owner = this.props.user;
 		APIpayment.sharers = this.state.sharers;
 
-		console.log(APIpayment);
-
 		fetch('/api/payments', {
 			method : 'POST',
 			headers: {'Content-Type':'application/json'},
@@ -47,7 +45,10 @@ class Payment extends React.Component {
  		.then(response => response.json())
   		
   		.then(body => {
-  			console.log(body);
+			let payment = body.payment;
+
+			if (payment.debts.reste)
+				alert('Il reste ' + payment.debts.reste + ' à payer par quelqu\'un ou à offrir :)' );
   		});
 
 	}

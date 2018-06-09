@@ -36,8 +36,8 @@ class SignUpForm extends React.Component {
 
 			if (body.error) {
 
-				if ( body.error.error.errors ) {
-					let errors = body.error.error.errors;
+				if ( body.error.errors ) {
+					let errors = body.error.errors;
 					this.setState({
 						errors: {
 							name: errors.name ? errors.name.message : '',

@@ -39,6 +39,16 @@ class Payment extends React.Component {
 
 		console.log(APIpayment);
 
+		fetch('/api/payments', {
+			method : 'POST',
+			body : APIpayment,
+		})
+ 		.then(response => response.json())
+  		
+  		.then(body => {
+  			console.log(body);
+  		});
+
 	}
 
 	render() {

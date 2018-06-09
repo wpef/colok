@@ -35,7 +35,7 @@ class Payment extends React.Component {
 		APIpayment.name = prompt("Payment title", 'Untitled');
 		APIpayment.price = this.state.value;
 		APIpayment.owner = this.props.user;
-		APIpayment.sharers = this.props.sharers;
+		APIpayment.sharers = this.state.sharers;
 
 		console.log(APIpayment);
 

@@ -26,10 +26,10 @@ class DebtsForm extends React.Component {
 
 		let colok = val.colok;
 
-		if (val.value === true && copie.includes(colok.name) === false)
-			copie.push(colok.name);
-		else if (val.value === false && copie.includes(colok.name)) {
-			var i = copie.indexOf(colok.name);
+		if (val.value === true && copie.includes(colok._id) === false)
+			copie.push(colok._id);
+		else if (val.value === false && copie.includes(colok._id)) {
+			var i = copie.indexOf(colok._id);
 			if (i !== -1) {
 				copie.splice(i, 1);
 			}
@@ -85,9 +85,7 @@ class DebtInput extends React.Component {
 
 	render() {
 		let input;
-		
-		console.log(this.props.price); //Is not updated with paymentField
-		
+				
 		if (this.state.value) {
 			input = <input type="number" value={this.props.price} />;
 		}

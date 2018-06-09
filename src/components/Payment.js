@@ -84,6 +84,7 @@ class Payment extends React.Component {
 				<DebtsForm
 					price={this.state.value}
 					shared={this.state.shared}
+					reste={this.state.reste}
 					onCheck={this.handleSharers}
 				/>
 

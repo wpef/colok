@@ -71,7 +71,7 @@ class DebtsForm extends React.Component {
 			return (
 				<div>
 					{DebtForm}
-					<ResteInput reste={this.state.reste} />
+					<ResteInput reste={this.props.reste} />
 				</div>
 			);
 		} else return "loading...";
@@ -124,10 +124,6 @@ class DebtInput extends React.Component {
 }
 
 class ResteInput extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
 		let input;
 

@@ -6,8 +6,12 @@ class DebtsForm extends React.Component {
 
 		this.fetchColoks();
 
-		this.state = { sharers: [], count: 0, shared: 0, reste: 0 };
-
+		this.state = {
+			sharers: [],
+			count: 0,
+			shared: 0,
+			reste: 0
+		};
 		this.handleCheck = this.handleCheck.bind(this);
 	}
 
@@ -52,19 +56,15 @@ class DebtsForm extends React.Component {
 	}
 
 	render() {
-		console.log(this.state.reste);
-
 		if (this.state.coloks) {
 			let DebtForm = this.state.coloks.map(colok => {
 				return (
-					<div>
-						<DebtInput
-							key={colok.name}
-							price={this.state.shared}
-							colok={colok}
-							onCheck={this.handleCheck}
-						/>
-					</div>
+					<DebtInput
+						key={colok.name}
+						price={this.props.shared}
+						colok={colok}
+						onCheck={this.handleCheck}
+					/>
 				);
 			}, this);
 
@@ -103,7 +103,7 @@ class DebtInput extends React.Component {
 	render() {
 		let input;
 
-		if (this.state.value) {
+		if (this.state.value && this.props.price) {
 			input = <input type="number" value={this.props.price} />;
 		} else {
 			input = <input type="number" value="" />;
@@ -132,9 +132,9 @@ class ResteInput extends React.Component {
 		let input;
 
 		if (this.props.reste) {
-			input = <input type="number" value={this.props.reste} />;
+			input = <input type="number" readOnly value={this.props.reste} />;
 		} else {
-			input = <input type="number" value="0" />;
+			input = <input type="number" readOnly value="0" />;
 		}
 
 		return (

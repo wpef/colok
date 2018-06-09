@@ -66,13 +66,12 @@ class Payment extends React.Component {
 					alert(
 						"Il reste " +
 							payment.debts.reste +
-							" à payer par quelqu'un ou à offrir :)"
+							"€ à payer par quelqu'un ou à offrir :)"
 					);
 			});
 	}
 
 	render() {
-		//console.log(this.state.shared); //re-render on change
 		return (
 			<div className="col-md-6">
 				<p> Combien avez-vous dépensé ? </p>

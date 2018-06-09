@@ -41,6 +41,7 @@ class Payment extends React.Component {
 
 		fetch('/api/payments', {
 			method : 'POST',
+			headers: {'Content-Type':'application/json'},
 			body : APIpayment,
 		})
  		.then(response => response.json())

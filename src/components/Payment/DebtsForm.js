@@ -104,9 +104,9 @@ class DebtInput extends React.Component {
 		let input;
 
 		if (this.state.value && this.props.price) {
-			input = <input type="number" value={this.props.price} />;
+			input = <input readOnly type="number" value={this.props.price} />;
 		} else {
-			input = <input type="number" value="" />;
+			input = <input readOnly type="number" value="" />;
 		}
 
 		if (this.props.colok) {

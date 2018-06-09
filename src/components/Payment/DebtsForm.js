@@ -37,32 +37,43 @@ class DebtsForm extends React.Component {
 
 		let t = this.props.price;
 		let n = copie.length;
-		let rest = (t % n)
-		
+		let rest = t % n;
+
 		let shares = (t - rest) / n;
 
 		this.props.onCheck(copie);
 
-		this.setState({ sharers: copie, count: copie.length, shared: shares, reste : rest });
+		this.setState({
+			sharers: copie,
+			count: copie.length,
+			shared: shares,
+			reste: rest
+		});
 	}
 
 	render() {
 		console.log(this.state.reste);
 
 		if (this.state.coloks) {
-			let form = this.state.coloks.map(colok => {
+			let DebtForm = this.state.coloks.map(colok => {
 				return (
-					<DebtInput
-						key={colok.name}
-						price={this.state.shared}
-						colok={colok}
-						onCheck={this.handleCheck}
-					/>
+					<div>
+						<DebtInput
+							key={colok.name}
+							price={this.state.shared}
+							colok={colok}
+							onCheck={this.handleCheck}
+						/>
+					</div>
 				);
 			}, this);
 
-			return <div> {form} </div>;
-			
+			return (
+				<div>
+					{DebtForm}
+					<ResteInput reste={this.state.reste} />
+				</div>
+			);
 		} else return "loading...";
 	}
 }
@@ -91,12 +102,11 @@ class DebtInput extends React.Component {
 
 	render() {
 		let input;
-				
+
 		if (this.state.value) {
 			input = <input type="number" value={this.props.price} />;
-		}
-		else {
-			input = <input type="number" value=''/>;
+		} else {
+			input = <input type="number" value="" />;
 		}
 
 		if (this.props.colok) {
@@ -106,12 +116,37 @@ class DebtInput extends React.Component {
 						<input type="checkbox" onClick={this.handleChange} />
 						<span>{this.props.colok.name}</span>
 					</div>
-					<div className="col-xs end-xs">
-						{input}
-					</div>
+					<div className="col-xs end-xs">{input}</div>
 				</label>
 			);
 		} else return "loading...";
+	}
+}
+
+class ResteInput extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		let input;
+
+		if (this.props.reste) {
+			input = <input type="number" value={this.props.reste} />;
+		} else {
+			input = <input type="number" value="0" />;
+		}
+
+		return (
+			<div>
+				<label className="row">
+					<div className="col-xs start-xs">
+						<span className="big_label">Reste : </span>
+					</div>
+					<div className="col-xs end-xs">{input}</div>
+				</label>
+			</div>
+		);
 	}
 }
 

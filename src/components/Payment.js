@@ -30,6 +30,10 @@ class Payment extends React.Component {
 	handleSubmit() {
 		console.log(this.state);
 		//Parse for API
+		// payment.name = req.body.name;
+		// payment.price = req.body.price;
+		// payment.owner = req.body.owner;
+		// payment.sharers = req.body.sharers.split(',');
 	}
 
 	render() {

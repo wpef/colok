@@ -16,7 +16,7 @@ class App extends Component {
   constructor(props){
     super(props);
 
-    this.state = { user : '5af71129c1839503fe3909c1'}; //Add user ID here for debug
+    this.state = { user : '5af23badf1e4f906259d2e5a'}; //Add user ID here for debug
   }
 
   render() {

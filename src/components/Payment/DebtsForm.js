@@ -39,29 +39,31 @@ class DebtsForm extends React.Component {
 			}
 		}
 
-		let t = this.props.price;
+		let t = Number(this.props.price);
 		let n = copie.length;
+
 		let rest = t % n;
 
-		let shares = (t - rest) / n;
-
+		let round = t / n;
+		let shares = Math.round(round * 100) / 100;
 		this.props.onCheck(copie);
 
 		this.setState({
 			sharers: copie,
 			count: copie.length,
-			shared: shares,
+			shared: shares, //0.00 format OK
 			reste: rest
 		});
 	}
 
 	render() {
+
 		if (this.state.coloks) {
 			let DebtForm = this.state.coloks.map(colok => {
 				return (
 					<DebtInput
 						key={colok.name}
-						price={this.props.shared}
+						price={this.state.shared}
 						colok={colok}
 						onCheck={this.handleCheck}
 					/>
@@ -89,7 +91,9 @@ class DebtInput extends React.Component {
 
 	handleChange() {
 		let value = this.state.value ? false : true;
+		
 		this.setState({ value: value });
+		
 		this.props.onCheck({
 			colok: this.props.colok,
 			value: value
@@ -102,6 +106,8 @@ class DebtInput extends React.Component {
 
 	render() {
 		let input;
+
+		console.log(this.props.price);
 
 		if (this.state.value && this.props.price) {
 			input = <input readOnly type="number" value={this.props.price} />;

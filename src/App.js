@@ -3,9 +3,9 @@ import './assets/react-toolbox/theme.css';
 import theme from './assets/react-toolbox/theme.js';
 import ThemeProvider from 'react-toolbox/lib/ThemeProvider';
 
-import './App.css';
+import './assets/css/App.css';
 
-import logo from './logo.svg';
+import logo from './assets/logo.svg';
 //import Form from './components/Form';
 //import {Home} from './components/Home';
 import Payment from './components/Payment';

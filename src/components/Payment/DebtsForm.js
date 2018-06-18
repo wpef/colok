@@ -59,7 +59,7 @@ class DebtsForm extends React.Component {
 	render() {
 
 		if (this.state.coloks) {
-			let DebtForm = this.state.coloks.map(colok => {
+			let DebtInputs = this.state.coloks.map(colok => {
 				return (
 					<DebtInput
 						key={colok.name}
@@ -72,7 +72,7 @@ class DebtsForm extends React.Component {
 
 			return (
 				<div>
-					{DebtForm}
+					{DebtInputs}
 					<ResteInput reste={this.props.reste} />
 				</div>
 			);

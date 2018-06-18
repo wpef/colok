@@ -1,4 +1,5 @@
 import React from "react";
+import loading from "../../assets/loading.svg";
 
 class DebtsForm extends React.Component {
 	constructor(props) {
@@ -57,7 +58,6 @@ class DebtsForm extends React.Component {
 	}
 
 	render() {
-
 		if (this.state.coloks) {
 			let DebtInputs = this.state.coloks.map(colok => {
 				return (
@@ -76,7 +76,8 @@ class DebtsForm extends React.Component {
 					<ResteInput reste={this.props.reste} />
 				</div>
 			);
-		} else return "loading...";
+		} else
+			return <img src={loading} className="Loading" alt="loading..." />;
 	}
 }
 
@@ -91,9 +92,9 @@ class DebtInput extends React.Component {
 
 	handleChange() {
 		let value = this.state.value ? false : true;
-		
+
 		this.setState({ value: value });
-		
+
 		this.props.onCheck({
 			colok: this.props.colok,
 			value: value

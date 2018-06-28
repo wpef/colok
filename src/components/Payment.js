@@ -23,12 +23,12 @@ class Payment extends React.Component {
 	}
 
 	handleChange(d) {
-		let v = d.value ? d.value : this.state.value;
-		
+		let v = d.value ? d.value : this.state.value;	
 		let s = d.sharers ? d.sharers : this.state.sharers;
+
 		let n = s.length;
 
-		let rest = v % n;
+		let rest = Math.round((v % n ) * 100) / 100;
 		let shares = (v - rest) / n;
 
 		this.setState({ value : v, sharers : s, shared: shares, reste: rest });

@@ -43,10 +43,9 @@ class DebtsForm extends React.Component {
 		let t = Number(this.props.price);
 		let n = copie.length;
 
-		let rest = t % n;
+		let rest = Math.round((t % n ) * 100) / 100;
+		let shares = Math.round((t / n) * 100) / 100;
 
-		let round = t / n;
-		let shares = Math.round(round * 100) / 100;
 		this.props.onCheck(copie);
 
 		this.setState({
@@ -107,8 +106,6 @@ class DebtInput extends React.Component {
 
 	render() {
 		let input;
-
-		console.log(this.props.price);
 
 		if (this.state.value && this.props.price) {
 			input = <input readOnly type="number" value={this.props.price} />;

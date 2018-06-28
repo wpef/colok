@@ -7,6 +7,60 @@ import Button from "react-toolbox/lib/button/Button";
 //
 //}
 
+import React from "react";
+import Button from "react-toolbox/lib/button/Button";
+
+// class Form extends React.Component {
+// 	constructor(props) {
+// 		super(props);
+
+// 		this.state = {
+// 			value: 0,
+// 		};
+
+// 		this.handleChange = this.handleChange.bind(this);
+// 	}
+
+// 	handleChange(d) {
+// 		let v = d;
+
+// 		this.setState({ value : v });
+// 	}
+
+// 	handleSubmit() {
+// 		//Parse for API
+// 		let post = {};
+
+// 		fetch("/api/", {
+// 			method: "POST",
+// 			headers: { "Content-Type": "application/json" },
+// 			body: JSON.stringify(post)
+// 		})
+// 			.then(response => response.json())
+
+// 			.then(body => {
+// 				let response = body;
+// 			});
+// 	}
+
+// 	render() {
+// 		return (
+// 			<div className="col-md-6">
+
+// 				<Component onCHange={this.handleChange} />
+
+// 				<Button
+// 					icon=""
+// 					label=""
+// 					raised
+// 					primary
+// 					onMouseUp={this.handleSubmit}
+// 				/>
+// 			</div>
+// 		);
+// 	}
+// }
+
 class SignUpForm extends React.Component {
 	state = {
 		name: "",
@@ -110,3 +164,4 @@ class SignUpForm extends React.Component {
 }
 
 export default SignUpForm;
+//Form not exported

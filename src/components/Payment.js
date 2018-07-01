@@ -28,10 +28,16 @@ class Payment extends React.Component {
 		let n = s.length;
 
 		let shares = Math.round(t / n * 100) / 100;
-		let tRounded = ((shares * 100) * n) / 100;
+		let tRounded = shares * 100 * n / 100;
 		let reste = (t * 100 - tRounded * 100) / 100;
 
-		console.log( {t : t, n: n, shares : shares, r : reste, trounded : tRounded} );
+		console.log({
+			t: t,
+			n: n,
+			shares: shares,
+			r: reste,
+			trounded: tRounded
+		});
 
 		this.setState({ value: t, sharers: s, shared: shares, reste: reste });
 	}
@@ -65,12 +71,17 @@ class Payment extends React.Component {
 			.then(body => {
 				let payment = body.payment;
 
-				if (payment.debts.reste)
-					alert(
-						"Il reste " +
-							payment.debts.reste +
-							"€ à payer par quelqu'un ou à offrir :)"
-					);
+				if (payment.debts.reste) {
+					let reste = payment.debts.reste;
+					let message = '';
+
+					if (reste > 0)
+						message = "Il reste " + reste + "€ à payer par quelqu'un ou à offrir 🎁 ";
+					else if (reste < 0)
+						message = "Vous gagnerez " + reste + "€ ! La charité ça paie ! 💸 ";
+
+					alert(message );
+				}
 			});
 	}
 

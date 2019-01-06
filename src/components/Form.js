@@ -7,9 +7,6 @@ import Button from "react-toolbox/lib/button/Button";
 //
 //}
 
-import React from "react";
-import Button from "react-toolbox/lib/button/Button";
-
 // class Form extends React.Component {
 // 	constructor(props) {
 // 		super(props);

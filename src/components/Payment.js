@@ -78,7 +78,7 @@ class Payment extends React.Component {
 					if (reste > 0)
 						message = "Il reste " + reste + "€ à payer par quelqu'un ou à offrir 🎁 ";
 					else if (reste < 0)
-						message = "Vous gagnerez " + reste + "€ ! La charité ça paie ! 💸 ";
+						message = "Vous gagnerez " + -reste + "€ ! La charité ça paie ! 💸 ";
 
 					alert(message );
 				}
